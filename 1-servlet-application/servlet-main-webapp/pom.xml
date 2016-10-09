@@ -1,0 +1,67 @@
+<?xml version="1.0"?>
+<project
+	xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd"
+	xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance">
+	<modelVersion>4.0.0</modelVersion>
+	<parent>
+		<groupId>com.airshiplay.module</groupId>
+		<artifactId>servlet-application</artifactId>
+		<version>0.0.1-SNAPSHOT</version>
+	</parent>
+	<artifactId>servlet-main-webapp</artifactId>
+	<packaging>war</packaging>
+	<name>servlet-main-webapp Maven Webapp</name>
+	<url>http://maven.apache.org</url>
+	<dependencies>
+		<dependency>
+			<groupId>com.airshiplay.module</groupId>
+			<artifactId>servlet-user-fragment</artifactId>
+			<version>${project.version}</version>
+		</dependency>
+		<dependency>
+			<groupId>com.airshiplay.module</groupId>
+			<artifactId>servlet-sys-fragment</artifactId>
+			<version>${project.version}</version>
+		</dependency>
+		<dependency>
+			<groupId>com.airshiplay.module</groupId>
+			<artifactId>servlet-wechat-fragment</artifactId>
+			<version>${project.version}</version>
+		</dependency>
+		<dependency>
+			<groupId>junit</groupId>
+			<artifactId>junit</artifactId>
+			<version>3.8.1</version>
+			<scope>test</scope>
+		</dependency>
+	</dependencies>
+	<build>
+		<finalName>servlet-main-webapp</finalName>
+		<plugins>
+			<plugin>
+				<groupId>org.apache.maven.plugins</groupId>
+				<artifactId>maven-war-plugin</artifactId>
+				<configuration>
+					<!-- web.xml is not mandatory since JavaEE 5 -->
+					<failOnMissingWebXml>false</failOnMissingWebXml>
+				</configuration>
+			</plugin>
+			<plugin>
+				<groupId>org.eclipse.jetty</groupId>
+				<artifactId>jetty-maven-plugin</artifactId>
+				<configuration>
+					<!-- <scanIntervalSeconds>10</scanIntervalSeconds> <reload>automatic</reload> -->
+					<httpConnector>
+						<port>8080</port>
+					</httpConnector>
+					<webAppSourceDirectory>src\main\webapp</webAppSourceDirectory>
+					<classesDirectory>target\classes</classesDirectory>
+					<webAppConfig>
+						<contextPath>/single</contextPath>
+					</webAppConfig>
+				</configuration>
+			</plugin>
+		</plugins>
+
+	</build>
+</project>
